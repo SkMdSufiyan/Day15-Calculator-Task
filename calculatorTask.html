@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day-15 Calculator Task</title>
+    <style>
+        *{
+            border-radius:5px;
+        }
+        .table-responsive{
+            width:300px;
+            height:400px;
+            background-color: lightgrey;
+            border:1px solid black;
+            justify-content: center;
+            margin-left:50px;    
+        }
+        #clear{
+            color:red;
+        }
+
+        .table-responsive button{
+            display: inline-block;
+            margin:10px 10px;
+            padding:5px 15px;
+        }
+        .table-responsive #equal{
+            padding:5px 10px;
+        }
+        .table-responsive button:active{
+            background-color:blue;
+            font-size: large;
+        }
+        #result{
+            margin:30px 40px;
+            width:200px;
+            height:30px;
+        }
+    </style>
+</head>
+<body>
+    <h1 id="title">Addition, Subtraction, Multiplication, Division, Modulus (%) of two numbers</h1>
+    <br>
+
+    <p id="description">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Doloribus, sequi repellendus? Mollitia vitae quo impedit? Magni porro sapiente velit. Vel voluptatum officiis autem minus eveniet eius dolore repudiandae tempore sunt quidem laudantium quae asperiores nostrum sapiente, eligendi velit nam sit eum porro iusto eaque perferendis omnis qui? Rerum, deserunt sint.</p>
+
+    <br>
+    <div class="table-responsive">
+        <input id="result" type="text" disabled />
+        <br>
+        <button id="clear" type="submit" onclick="clrResult()">C</button>
+        <button id="back"><-</button>
+        <button id="decimalpoint" onclick="dispResult('.')">.</button>
+        <button id="multiply" onclick="dispResult('*')">*</button>
+        <br>
+        <button id="7" onclick="dispResult('7')">7</button>
+        <button id="8" onclick="dispResult('8')">8</button>
+        <button id="9" onclick="dispResult('9')">9</button>
+        <button id="divide" onclick="dispResult('/')">/</button>
+        <br>
+        <button id="4" onclick="dispResult('4')">4</button>
+        <button id="5" onclick="dispResult('5')">5</button>
+        <button id="6" onclick="dispResult('6')">6</button>
+        <button id="subtract" onclick="dispResult('-')">-</button>
+        <br>
+        <button id="1" onclick="dispResult('1')">1</button>
+        <button id="2" onclick="dispResult('2')">2</button>
+        <button id="3" onclick="dispResult('3')">3</button>
+        <button id="add" onclick="dispResult('+')">+</button>
+        <br>
+        <button id="0" onclick="dispResult('0')">0</button>
+        <button id="00" onclick="dispResult('00')">00</button>
+        <button id="mod" onclick="dispResult('%')">%</button>
+        <button id="equal" onclick="calculate()">=</button>
+    </div>
+    
+
+
+    <script src="https://app.zenclass.in/sheets/v1/js/zen/suite/bundle.js">
+        
+    </script>
+    <script>
+        console.log('This is html internal script file.');
+        function clrResult(){
+            document.getElementById("result").value='0';
+        }
+        function dispResult(val){
+            document.getElementById("result").value+=val;
+        }
+        function calculate(){
+            var inpStr=document.getElementById("result").value.split('');
+            var symb_index=0;
+            for(let i=0; i<inpStr.length;i++){
+                if(inpStr[i]=='+' || inpStr[i]=='-' || inpStr[i]=='*' || inpStr[i]=='/' || inpStr[i]=='%'){
+                    symb_index=i;
+                }
+            }
+            var a=Number(inpStr.slice(0,symb_index).join(''));
+            var b=Number(inpStr.slice(symb_index+1).join(''));
+            var symb=inpStr[symb_index];
+
+            if(symb=='+'){
+                document.getElementById("result").value=a+b;
+            }else if(symb=='-'){
+                document.getElementById("result").value=a-b;
+            }else if(symb=='*'){
+                document.getElementById("result").value=a*b;
+            }else if(symb=='/'){
+                document.getElementById("result").value=a/b;
+            }else if(symb=='%'){
+                document.getElementById("result").value=a%b;
+            }
+            
+        }
+    </script>
+</body>
+</html>
